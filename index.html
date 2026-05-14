@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二叉树可视化分析器</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">数据结构课程大作业</p>
+        <h1>二叉树可视化分析器</h1>
+      </div>
+      <p class="hero-copy">
+        输入层序数组后，页面会自动完成建树、遍历、结构分析、性质判断、路径查询，并同时给出图形树与文本树两种视图。
+      </p>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel panel-input">
+        <div class="panel-heading">
+          <h2>输入与控制</h2>
+          <p>推荐使用层序输入法，空节点写成 null。</p>
+        </div>
+        <label class="field-label" for="level-order-input">层序数组</label>
+        <textarea id="level-order-input" rows="5" spellcheck="false" placeholder="例如：[8, 4, 12, 2, 6, 10, 14, null, null, 5, 7]"></textarea>
+        <div class="button-row">
+          <button id="analyze-button" class="button button-primary" type="button">构建并分析</button>
+          <button id="load-sample-button" class="button button-secondary" type="button">载入样例</button>
+          <button id="reset-button" class="button button-ghost" type="button">重置</button>
+        </div>
+        <p id="status-message" class="status-message" data-tone="neutral">等待输入。</p>
+      </section>
+
+      <section class="panel panel-query">
+        <div class="panel-heading">
+          <h2>路径查询</h2>
+          <p>输入目标值后，查看是否存在、路径和层数。</p>
+        </div>
+        <label class="field-label" for="target-value-input">目标值</label>
+        <div class="inline-query">
+          <input id="target-value-input" type="text" inputmode="decimal" placeholder="例如：7">
+          <button id="search-button" class="button button-primary" type="button">查询节点</button>
+        </div>
+        <div id="query-result" class="query-result">输入目标值后可查询路径与层数。</div>
+      </section>
+
+      <section class="panel panel-traversals">
+        <div class="panel-heading">
+          <h2>遍历结果</h2>
+          <p>包含题目要求的四种遍历，以及一个非递归前序遍历。</p>
+        </div>
+        <div id="traversal-results" class="card-grid"></div>
+      </section>
+
+      <section class="panel panel-metrics">
+        <div class="panel-heading">
+          <h2>结构分析</h2>
+          <p>统计节点规模、高度、层宽和叶子节点信息。</p>
+        </div>
+        <div id="metric-results" class="card-grid"></div>
+      </section>
+
+      <section class="panel panel-properties">
+        <div class="panel-heading">
+          <h2>性质判断</h2>
+          <p>判断空树、满二叉树、完全二叉树、平衡性和 BST 性质。</p>
+        </div>
+        <div id="property-results" class="card-grid"></div>
+      </section>
+
+      <section class="panel panel-visual">
+        <div class="panel-heading">
+          <h2>图形树</h2>
+          <p>使用 SVG 绘制树形结构，查询命中后高亮目标节点。</p>
+        </div>
+        <div class="svg-stage">
+          <svg id="tree-svg"></svg>
+        </div>
+      </section>
+
+      <section class="panel panel-text">
+        <div class="panel-heading">
+          <h2>文本树</h2>
+          <p>采用自上而下的 ASCII 竖状树输出，尽量贴近题目示例的展示方式。</p>
+        </div>
+        <pre id="ascii-tree" class="ascii-tree"></pre>
+      </section>
+    </main>
+  </div>
+
+  <script defer src="./js/app-standalone.js"></script>
+</body>
+</html>
